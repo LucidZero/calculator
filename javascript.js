@@ -2,7 +2,7 @@
 
 
 
-let input = "34  12";
+let input = ".12 * 12";
 let inputNoSpaces = input.replace(/ /g,'');
 
 let inputArray = inputNoSpaces.split(""); /* inputArray has no spaces in it  */
@@ -42,10 +42,10 @@ function calculator(){
     firstNumber = inputNoSpaces.slice(0 ,operatorPosition); /* from start to operatorPosition */
     secondNumber = inputNoSpaces.slice(operatorPosition+1); /* from 1 position after operatorPosition */
 
-    if (operatorPosition === -1){
+    if (operatorPosition === -1){ /* In case there is no operator */
         console.log("No operator")
     } else {
-    switch(operatorIndex) {
+    switch(operatorIndex) { /* in case of valid operator present it will do a calculation of two numbers based on operator */
         case 0:
             addition(firstNumber, secondNumber)
           break;
@@ -59,7 +59,7 @@ function calculator(){
             divison(firstNumber, secondNumber)
          break;
         default:
-          console.log("No Number")
+          console.log("Error")
       }
     }
 }
@@ -81,28 +81,35 @@ Backspace/erasing can only be done from rightmost place
 */
 
 
-
+function checkSumIsValid(sum){
+    if (sum === NaN)
+    {
+        /* Make it so it gives Sum is not a valid number */
+    } else {
+        /* return sum as input */
+    }
+}
 
 
 
 /* Operations */
 function addition(firstNumber, secondNumber){
     sum = Number(firstNumber) + Number(secondNumber);
-    console.log(sum);
+    console.log(sum.toFixed(2));
     return sum;
 }
 function subtraction(firstNumber, secondNumber){
     sum = Number(firstNumber) - Number(secondNumber);
-    console.log(sum);
+    console.log(sum.toFixed(2));
     return sum;    
 }
 function multiplication(firstNumber, secondNumber){
     sum = Number(firstNumber) * Number(secondNumber);
-    console.log(sum);
+    console.log(sum.toFixed(2));
     return sum;   
 }
 function divison(firstNumber, secondNumber){
     sum = Number(firstNumber) / Number(secondNumber);
-    console.log(sum);
+    console.log(sum.toFixed(2));
     return sum;   
 }
