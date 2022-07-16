@@ -2,7 +2,7 @@
 
 
 
-let input = "12312/3";
+let input = "123 + 123";
 let inputNoSpaces = input.replace(/ /g,'');
 
 let inputArray = inputNoSpaces.split(""); /* inputArray has no spaces in it  */
@@ -37,6 +37,10 @@ function getValues(){
         }
     i++;
     }
+    firstNumber = inputNoSpaces.slice(0 ,operatorPosition); /* from start to operatorPosition */
+    secondNumber = inputNoSpaces.slice(operatorPosition+1); /* from 1 position after operatorPosition */
+    console.log(firstNumber);
+    console.log(secondNumber);
 }
 
 
