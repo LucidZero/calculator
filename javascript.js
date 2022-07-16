@@ -2,7 +2,7 @@
 
 
 
-let input = "11 + 12";
+let input = "34 + 12";
 let inputNoSpaces = input.replace(/ /g,'');
 
 let inputArray = inputNoSpaces.split(""); /* inputArray has no spaces in it  */
@@ -15,10 +15,10 @@ let firstNumber;
 let secondNumber;
 
 /* We gotta find which spot in inputArray is operator, using that we can get other numbers */
-let operatorPosition = -1;
+let operatorPosition = -1; /* If operator is not found with indexOf its value is -1 */
 let operator;
 
-const operatorsArray = ["+", "-", "*" ,"/"]; /*Don't think theres a need to use this */
+const operatorsArray = ["+", "-", "*" ,"/"];
 
 /* This function will determine where is operator in inputArray, and based on that we will be able to get 
 first and second number */
@@ -26,17 +26,20 @@ first and second number */
 calculator() /* This will run on = or enter */
 function calculator(){
     i=0;
+    spinFourTimes = 0;
     operatorIndex = 0;
-    while(operatorPosition <= -1){
+    while(spinFourTimes < 4){
     operatorPosition = inputArray.indexOf(operatorsArray[i]);
     
-    if (operatorPosition > -1){
-        operator = operatorsArray[i]; 
-        
-        operatorIndex = i; /* Based on operator index we can choose case as as to calculate */
-        }
+        if (operatorPosition > -1){
+            operator = operatorsArray[i]; 
+            console.log(i)
+            operatorIndex = i; /* Based on operator index we can choose case as as to calculate */
+            spinFourTimes = 4;
+            }
     i++;
-    }
+    spinFourTimes++;
+    }11
     firstNumber = inputNoSpaces.slice(0 ,operatorPosition); /* from start to operatorPosition */
     secondNumber = inputNoSpaces.slice(operatorPosition+1); /* from 1 position after operatorPosition */
 
@@ -70,8 +73,8 @@ Rules
 
 First place can only be a number nothing else.
 There can only be one operator.
-If there is one operator only numbers, + and backspace/erasing would be possible.
-Erasing can only be done from rightmost place, so no just changing operators
+If there is one operator only numbers, = and backspace/erasing would be possible.
+Backspace/erasing can only be done from rightmost place
 */
 
 
