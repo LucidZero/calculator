@@ -2,7 +2,7 @@
 
 
 
-let input = "123 + 123";
+let input = "11 + 12";
 let inputNoSpaces = input.replace(/ /g,'');
 
 let inputArray = inputNoSpaces.split(""); /* inputArray has no spaces in it  */
@@ -22,26 +22,47 @@ const operatorsArray = ["+", "-", "*" ,"/"]; /*Don't think theres a need to use 
 
 /* This function will determine where is operator in inputArray, and based on that we will be able to get 
 first and second number */
-getValues()
 
-
-
-function getValues(){
+calculator() /* This will run on = or enter */
+function calculator(){
     i=0;
+    operatorIndex = 0;
     while(operatorPosition <= -1){
     operatorPosition = inputArray.indexOf(operatorsArray[i]);
-    console.log(operatorPosition);
+    
     if (operatorPosition > -1){
         operator = operatorsArray[i]; 
-        console.log(operator);
+        
+        operatorIndex = i; /* Based on operator index we can choose case as as to calculate */
         }
     i++;
     }
     firstNumber = inputNoSpaces.slice(0 ,operatorPosition); /* from start to operatorPosition */
     secondNumber = inputNoSpaces.slice(operatorPosition+1); /* from 1 position after operatorPosition */
-    console.log(firstNumber);
-    console.log(secondNumber);
+
+    switch(operatorIndex) {
+        case 0:
+            addition(firstNumber, secondNumber)
+          break;
+        case 1:
+            subtraction(firstNumber, secondNumber)
+          break;
+        case 2:
+            multiplication(firstNumber, secondNumber)
+         break;
+        case 3:
+            divison(firstNumber, secondNumber)
+         break;
+        default:
+          // code block
+      }
 }
+
+
+
+
+/* on input we will have to check number of operators if number is more than 1, pop last operator
+by grabbing index of last operator */
 
 
 /*
@@ -60,18 +81,22 @@ Erasing can only be done from rightmost place, so no just changing operators
 
 /* Operations */
 function addition(firstNumber, secondNumber){
-    sum = firstNumber + secondNumber;
+    sum = Number(firstNumber) + Number(secondNumber);
+    console.log(sum);
     return sum;
 }
 function subtraction(firstNumber, secondNumber){
-    sum = firstNumber - secondNumber;
+    sum = Number(firstNumber) - Number(secondNumber);
+    console.log(sum);
     return sum;    
 }
 function multiplication(firstNumber, secondNumber){
-    sum = firstNumber * secondNumber;
+    sum = Number(firstNumber) * Number(secondNumber);
+    console.log(sum);
     return sum;   
 }
 function divison(firstNumber, secondNumber){
-    sum = firstNumber / secondNumber;
+    sum = Number(firstNumber) / Number(secondNumber);
+    console.log(sum);
     return sum;   
 }
