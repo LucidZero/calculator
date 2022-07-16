@@ -2,7 +2,7 @@
 
 
 
-let input = "34 + 12";
+let input = "34  12";
 let inputNoSpaces = input.replace(/ /g,'');
 
 let inputArray = inputNoSpaces.split(""); /* inputArray has no spaces in it  */
@@ -33,16 +33,18 @@ function calculator(){
     
         if (operatorPosition > -1){
             operator = operatorsArray[i]; 
-            console.log(i)
             operatorIndex = i; /* Based on operator index we can choose case as as to calculate */
             spinFourTimes = 4;
             }
     i++;
     spinFourTimes++;
-    }11
+    }
     firstNumber = inputNoSpaces.slice(0 ,operatorPosition); /* from start to operatorPosition */
     secondNumber = inputNoSpaces.slice(operatorPosition+1); /* from 1 position after operatorPosition */
 
+    if (operatorPosition === -1){
+        console.log("No operator")
+    } else {
     switch(operatorIndex) {
         case 0:
             addition(firstNumber, secondNumber)
@@ -57,8 +59,9 @@ function calculator(){
             divison(firstNumber, secondNumber)
          break;
         default:
-          // code block
+          console.log("No Number")
       }
+    }
 }
 
 
