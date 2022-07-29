@@ -2,26 +2,30 @@
 
 
 
-let input = ".12 * 12";
+let input = "12 * 12";
 let inputNoSpaces = input.replace(/ /g,'');
 
 let inputArray = inputNoSpaces.split(""); /* inputArray has no spaces in it  */
 
 console.log(inputArray);
 
-/*we will need to find lenght of first number
-by looking at where the first operator is at */
 let firstNumber;
 let secondNumber;
 
-/* We gotta find which spot in inputArray is operator, using that we can get other numbers */
 let operatorPosition = -1; /* If operator is not found with indexOf its value is -1 */
 let operator;
 
 const operatorsArray = ["+", "-", "*" ,"/"];
 
-/* This function will determine where is operator in inputArray, and based on that we will be able to get 
-first and second number */
+
+
+/* On enter or = we need to check whether input is valid
+in case input is valid we run calculator() function otherwise 
+print out input is not valid try again*/
+
+
+
+
 
 calculator() /* This will run on = or enter */
 function calculator(){
@@ -95,21 +99,21 @@ function checkSumIsValid(sum){
 /* Operations */
 function addition(firstNumber, secondNumber){
     sum = Number(firstNumber) + Number(secondNumber);
-    console.log(sum.toFixed(2));
+    console.log(sum);
     return sum;
 }
 function subtraction(firstNumber, secondNumber){
     sum = Number(firstNumber) - Number(secondNumber);
-    console.log(sum.toFixed(2));
+    console.log(sum);
     return sum;    
 }
 function multiplication(firstNumber, secondNumber){
     sum = Number(firstNumber) * Number(secondNumber);
-    console.log(sum.toFixed(2));
+    console.log(sum);
     return sum;   
 }
 function divison(firstNumber, secondNumber){
     sum = Number(firstNumber) / Number(secondNumber);
-    console.log(sum.toFixed(2));
+    console.log(sum);
     return sum;   
 }
