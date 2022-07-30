@@ -1,7 +1,7 @@
 let currentInput;
 let previousInput = 0;
 let operator;
-
+let numbers = document.querySelector(".buttons");
 
 /* for numbers on keypress or click we write that number
 into current input
@@ -22,6 +22,12 @@ function calculator(){
 
 /*object.addEventListener("keydown", myScript); */
 
+/* eligible keys that can be pressed */
+let eligibleNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let eligibleKeys = ["=", "+", "-", "*", "/", "Backspace"]
+
+
+numbers.addEventListener("keydown")
 
 /* Operations */
 function addition(currentInput, previousInput){
