@@ -31,16 +31,7 @@ input::-webkit-inner-spin-button {
     flex-wrap: wrap;
     flex-direction: row;
 }
-.buttons{
 
-    
-}
-.operators{
-
-    
-}
-#pad{
-}
 #buttonsClear, #buttonsEquals, .operators, .buttons, #emptyField, #backspaceButton{
     display: flex;
     justify-content: center;
@@ -63,9 +54,7 @@ input::-webkit-inner-spin-button {
     width: 100px;
 
 }
-#emptyField{
 
-}
 #buttonsToDelete{
     display: flex;
     flex-direction: row
