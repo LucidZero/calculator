@@ -2,89 +2,80 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
+    background-image: linear-gradient( 83.2deg,  rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    font-family: 'Roboto', sans-serif;
+
+}
+html, body {
+    margin: 0;
+    height: 100%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 #calculatorBox{
-    min-width: 600px;
-    max-width: 600px;
-    min-height: 700px;
-    max-height: 700px;
-    background-color: rgb(174, 174, 174);
-    border-radius: 15px;
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 520px;
+    max-height: 520px;
+    background-image: linear-gradient( 132.6deg,  rgba(71,139,214,1) 23.3%, rgba(37,216,211,1) 84.7% );
     display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    flex-direction: row;
-    border-style: solid;
-    border-color: rgb(108, 108, 108);
+    flex-direction: column;
+    margin-top: 200px;
 }
-#inputField{
-    width: 90%;
-    height: 80px;
-    margin: 40px 40px;
-    border-radius: 10px;
-    font-size: 80px;
-    border-width: thin;
-    border-color: rgb(65, 65, 65);
-}
+
 #calculatorPad{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 390px;
-    justify-content: space-evenly;
 }
 .buttons{
     height: 100px;
     width: 100px;
-    background: rgb(230, 230, 230);
-    border-radius: 10px;
-    font-size: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     
 }
 .operators{
     height: 100px;
     width: 100px;
-    background: rgb(230, 230, 230);
-    border-radius: 10px;
-    font-size: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#calculatorOperators{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 430px;
+    
 }
 #pad{
-    margin: 40px;
-    width: 520px;
+}
+#buttonsClear, #buttonsEquals, .operators, .buttons{
     display: flex;
-    flex-direction: row;
-    
+    justify-content: center;
+    align-items: center;
+    background: rgba(230, 230, 230, 0);
+    color: rgb(241, 241, 241);
+    font-size: 70px;
 }
 #buttonsClear{
-    background-color: rgb(127, 56, 56);
     height: 100px;
     width: 100px;
-    border-radius: 10px;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 50px;
+
 }
 #buttonsEquals{
-    background-color: green;
     height: 100px;
     width: 100px;
-    border-radius: 10px;
-    font-size: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+
+}
+
+
+#outputWindow{
+    height: 120px;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.178);
+
+}
+#previousInput{
+height: 50px;
+width: 400px;
+}
+#currentInput{
+height: 70px;
+width: 400px;
 }

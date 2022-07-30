@@ -1,6 +1,6 @@
 
 
-
+let inputField = document.querySelector("#inputField");
 
 let input = "12 * 12";
 let inputNoSpaces = input.replace(/ /g,'');
@@ -27,7 +27,7 @@ print out input is not valid try again*/
 
 
 
-calculator() /* This will run on = or enter */
+/*calculator()  This will run on = or enter */
 function calculator(){
     i=0;
     spinFourTimes = 0;
@@ -117,3 +117,6 @@ function divison(firstNumber, secondNumber){
     console.log(sum);
     return sum;   
 }
+
+
+

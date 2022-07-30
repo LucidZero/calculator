@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="javascript.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,26 +14,27 @@
 
 <body>
 <div id="calculatorBox">
-    <input type="text"id="inputField" name="inputField"><br><br>
+    <div id="outputWindow">
+        <div id="previousInput"></div>
+        <div id="currentInput"></div>
+    </div>
     <div id="pad">
         <div id="calculatorPad">
             <div class="buttons">1</div>
             <div class="buttons">2</div>
             <div class="buttons">3</div>
+            <div class="operators">+</div>
             <div class="buttons">4</div>
             <div class="buttons">5</div>
             <div class="buttons">6</div>
+            <div class="operators">-</div>
             <div class="buttons">7</div>
             <div class="buttons">8</div>
             <div class="buttons">9</div>
-            <div id="buttonsClear">Clear</div>
-            <div class="buttons">0</div>
-            <div id="buttonsEquals">=</div>
-        </div>
-        <div id="calculatorOperators">
-            <div class="operators">+</div>
-            <div class="operators">-</div>
             <div class="operators">*</div>
+            <div id="buttonsClear">AC</div>
+            <div class="buttons">0</div>
+            <div id="buttonsEquals" onclick="calculator()">=</div>
             <div class="operators">/</div>
         </div>
     </div>
