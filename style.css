@@ -14,6 +14,8 @@ body {
     flex: 1;
     flex-wrap: wrap;
     flex-direction: row;
+    border-style: solid;
+    border-color: rgb(108, 108, 108);
 }
 #inputField{
     width: 90%;
@@ -22,44 +24,67 @@ body {
     border-radius: 10px;
     font-size: 80px;
     border-width: thin;
+    border-color: rgb(65, 65, 65);
 }
 #calculatorPad{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     width: 390px;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .buttons{
     height: 100px;
     width: 100px;
     background: rgb(230, 230, 230);
+    border-radius: 10px;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 .operators{
     height: 100px;
     width: 100px;
     background: rgb(230, 230, 230);
+    border-radius: 10px;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #calculatorOperators{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 430px;
 }
 #pad{
     margin: 40px;
     width: 520px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    
 }
 #buttonsClear{
     background-color: rgb(127, 56, 56);
     height: 100px;
     width: 100px;
+    border-radius: 10px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #buttonsEquals{
     background-color: green;
     height: 100px;
     width: 100px;
+    border-radius: 10px;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
