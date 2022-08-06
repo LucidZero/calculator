@@ -1,5 +1,5 @@
-let currentInput = [];
-let previousInput = [];
+let currentInput;
+let previousInput;
 let operator;
 
 let keypad = document.querySelector("#pad");
@@ -10,8 +10,11 @@ let operators = document.querySelector(".operators");
 
 
 let currentInputDisplay = document.querySelector("#currentInput");
+let previousInputDisplay = document.querySelector("#previousInput");
 
 
+
+let displayCurrent = () => currentInputDisplay.textContent = currentInput;
 
 
 /* for numbers on keypress or click we write that number
@@ -42,7 +45,6 @@ add them into currentInput array */
 /* Operations */
 
 
-
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("div")){
 console.log("hi")
@@ -56,7 +58,7 @@ window.addEventListener("keypress", event => {
     for (step = 0; step < 10; step++) {
 if (event.key == step) {
     currentInput.push(event.key);
-    currentInputDisplay.textContent = currentInput.map(Number);
+    displayCurrent();
     }}
 });
 
@@ -65,7 +67,18 @@ window.addEventListener("keydown", event => {
     console.log(event.key)
 if (event.key === "Backspace"){
     currentInput.pop();
-    currentInputDisplay.textContent = currentInput.map(Number);
+    displayCurrent()
+}
+if (event.key === "Enter"){
+    
+    displayCurrent()
+    previousInputDisplay.textContent = previousInput.map(Number);
+}
+if (event.key === "."){
+if (currentInput.includes(".")===false){
+    currentInput.push(".");
+    displayCurrent()
+}
 }
 });
 
