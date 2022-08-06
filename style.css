@@ -32,7 +32,7 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
 }
 
-#buttonsClear, #buttonsEquals, .operators, .buttons, #emptyField, #backspaceButton{
+#buttonsClear, #buttonsEquals, .operators, .buttons, #dot, #backspaceButton{
     display: flex;
     justify-content: center;
     align-items: center;

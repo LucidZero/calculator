@@ -1,7 +1,11 @@
 let currentInput;
-let previousInput = 0;
+let previousInput;
 let operator;
 let numbers = document.querySelector(".buttons");
+
+
+let buttons = document.querySelectorAll(".buttons");
+let operators = document.querySelectorAll(".operators");
 
 /* for numbers on keypress or click we write that number
 into current input
@@ -24,32 +28,23 @@ function calculator(){
 
 /* eligible keys that can be pressed */
 let eligibleNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-let eligibleKeys = ["=", "+", "-", "*", "/", "Backspace"]
+let eligibleKeys = ["=", "+", "-", "*", "/", "Backspace", "."]
 
-
-numbers.addEventListener("keydown")
+/*when we press one of the above buttons
+add them into currentInput array */
 
 /* Operations */
-function addition(currentInput, previousInput){
-    sum = Number(currentInput) + Number(previousInput);
-    console.log(sum);
-    return sum;
-}
-function subtraction(currentInput, previousInput){
-    sum = Number(currentInput) - Number(previousInput);
-    console.log(sum);
-    return sum;    
-}
-function multiplication(currentInput, previousInput){
-    sum = Number(currentInput) * Number(previousInput);
-    console.log(sum);
-    return sum;   
-}
-function divison(currentInput, previousInput){
-    sum = Number(currentInput) / Number(previousInput);
-    console.log(sum);
-    return sum;   
-}
+
+
+buttons.addEventListener("click", () => console.log("test"));
+operators.addEventListener("click", () => console.log("test2"));
+
+
+
+let addition = () => (currentInput) + (previousInput);
+let addsubtractionition = () => (currentInput) - (previousInput);
+let multiplication = () => (currentInput) * (previousInput);
+let divison = () => (currentInput) / (previousInput);
 
 
 
