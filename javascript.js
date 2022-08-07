@@ -78,6 +78,7 @@ if (event.key === "Enter"){
 if (event.key === "."){
 if (currentInput.includes(".")===false){
     currentInput += (event.key);
+    currentInput.substring(currentInput.indexOf(".")+2,-1);
     displayCurrent();
 }
 }
