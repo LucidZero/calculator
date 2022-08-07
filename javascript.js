@@ -2,6 +2,7 @@ let currentInput = "";
 let previousInput = "";
 let operator = 0;
 let previousOperator = 0;
+let empty = "";
 
 let eligibleOperators = ["+", "-", "*", "/"];
 let eligibleNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -15,6 +16,7 @@ let previousInputDisplay = document.querySelector("#previousInput");
 
 let displayCurrent = () => currentInputDisplay.textContent = currentInput;
 let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + eligibleOperators[operator];
+let displayPreviousCalculator = () => previousInputDisplay.textContent = previousInput + " " + eligibleOperators[previousInput];
 
 
 /* Mouse support */
@@ -24,6 +26,7 @@ keypad.addEventListener('click', (event) => {
         currentInput = "";
         previousInput = "";
         operator = 0;
+        previousOperator = 0;
         displayCurrent();
         previousInputDisplay.textContent = "";
     } 
@@ -58,13 +61,24 @@ window.onclick = event => {
     }
 
     if (eligibleOperators.includes(String(event.target.textContent)) === true) {
+        if (currentInput===empty){
+            console.log("test")
+            operator = eligibleOperators.indexOf(event.target.textContent);
+            previousOperator = operator;
+            displayPrevious();
+            
+        } else { 
         operator = eligibleOperators.indexOf(event.target.textContent);
         calculate(previousOperator);
         previousOperator=operator;
         }
+    }
     } 
 
-
+/* if (currentInput===empty){
+    operator = eligibleOperators.indexOf(event.target.textContent);
+    previousOperator=operator;
+} else { */
 /* Keyboard support */
 window.addEventListener("keypress", event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
