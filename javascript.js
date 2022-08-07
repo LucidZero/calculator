@@ -77,7 +77,7 @@ if (event.key === "Enter"){
 }
 if (event.key === "."){
 if (currentInput.includes(".")===false){
-    currentInput += ".";
+    currentInput += (event.key);
     displayCurrent();
 }
 }
