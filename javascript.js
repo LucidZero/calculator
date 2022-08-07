@@ -55,13 +55,16 @@ console.log("hi")
   })
 
 window.addEventListener("keypress", event => {
-
+    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
+    return;
+    } else{
     for (step = 0; step < 10; step++) {
-if (event.key == step) {
-    currentInput += (event.key);
-    displayCurrent();
-    }}
-});
+
+    if (event.key == step) {
+        currentInput += (event.key);
+        displayCurrent();
+        }}}
+    });
 
 
 window.addEventListener("keydown", event => {
@@ -77,8 +80,9 @@ if (event.key === "Enter"){
 }
 if (event.key === "."){
 if (currentInput.includes(".")===false){
+
     currentInput += (event.key);
-    currentInput.substring(currentInput.indexOf(".")+2,-1);
+
     displayCurrent();
 }
 }
