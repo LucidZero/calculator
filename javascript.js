@@ -1,6 +1,7 @@
 let currentInput = "";
 let previousInput = "";
 let operator = 0;
+let previousOperator = 0;
 
 let eligibleOperators = ["+", "-", "*", "/"];
 let eligibleNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -23,8 +24,9 @@ keypad.addEventListener('click', (event) => {
         currentInput = "";
         previousInput = "";
         operator = 0;
+        previousOperator = 0;
         displayCurrent();
-        displayPrevious();
+        previousInputDisplay.textContent = "";
     } 
 });
 keypad.addEventListener('click', (event) => {
@@ -35,6 +37,7 @@ keypad.addEventListener('click', (event) => {
 });
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsEquals")){
+        previousOperator=operator
         calculate();
     } 
 });
@@ -56,8 +59,10 @@ window.onclick = event => {
     }
 
     if (eligibleOperators.includes(String(event.target.textContent)) === true) {
+        previousOperator = operator;
         operator = eligibleOperators.indexOf(event.target.textContent);
-        calculate(operator);
+        
+        calculate(previousOperator);
         }
     } 
 
@@ -91,17 +96,21 @@ if (eligibleOperators.includes(event.key)===true){
             displayCurrent();
             previousInput = "";
             currentInput = "";
+            
         }
         else {
             operator = eligibleOperators.indexOf(event.key);
             calculate(operator);
             }
     } else {
+    previousOperator = operator;
     operator = eligibleOperators.indexOf(event.key);
+    
     calculate(operator);
     }
 }
 if (event.key === "Enter" || event.key === "=") {  
+    previousOperator=operator
     calculate();
 }
 });
@@ -132,7 +141,7 @@ function previousInputShown() {
 }
 
 function calculate(){
-    switch(operator) {
+    switch(previousOperator) {
     case 0:
         addition();
         previousInputShown();
