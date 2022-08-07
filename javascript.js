@@ -12,12 +12,10 @@ let operators = document.querySelector(".operators");
 
 let currentInputDisplay = document.querySelector("#currentInput");
 let previousInputDisplay = document.querySelector("#previousInput");
-let currentOperatorDisplay = document.querySelector("#currentOperator");
 
 
-let displayCurrent = () => currentInputDisplay.textContent = currentInput;
+let displayCurrent = () => currentInputDisplay.textContent = currentInput+" "+eligibleOperators[operator];
 let displayPrevious = () => previousInputDisplay.textContent = previousInput;
-let displayCurrentOperator = () => currentOperatorDisplay.textContent = eligibleOperators[operator];
 
 
 
@@ -33,7 +31,7 @@ keypad.addEventListener('click', (event) => {
   })
 
 window.addEventListener("keypress", event => {
-    displayCurrentOperator();
+
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
     return;
     } else{
@@ -57,15 +55,10 @@ if (event.key === "."){
 }
 }
 if (eligibleOperators.includes(event.key)===true){
-    if (event.key==="/" && previousInput == 0 || currentInput == 0){
-        previousInput = "Cannot divide with a 0";
-        displayPrevious();
-        previousInput="";
-        currentInput="";
-    } else{
+   
         operator = eligibleOperators.indexOf(event.key);
-        calculate();
-    }
+        calculate(operator);
+    
 }
 
 if (event.key === "Enter" || event.key === "=") {  
@@ -76,7 +69,12 @@ if (event.key === "Enter" || event.key === "=") {
 
 });
 
-
+/* if (event.key==="/" && previousInput == 0 || currentInput == 0){
+        previousInput = "Cannot divide with a 0";
+        displayPrevious();
+        previousInput="";
+        currentInput="";
+    } else{*/
 
 
 
@@ -90,6 +88,7 @@ let divison = () => previousInput = Number(previousInput) / Number(currentInput)
 
 function previousInputShown() {
 previousInput = previousInput.toFixed(2).replace(/[.,]00$/, ""); 
+previousInput = previousInput.replace(/-/g, "");
 /*Shows two decimal places only if there are decimals */
 
 previousInput = String(previousInput);
