@@ -12,8 +12,8 @@ let operators = document.querySelector(".operators");
 let currentInputDisplay = document.querySelector("#currentInput");
 let previousInputDisplay = document.querySelector("#previousInput");
 
-let displayCurrent = () => currentInputDisplay.textContent = currentInput+" "+eligibleOperators[operator];
-let displayPrevious = () => previousInputDisplay.textContent = previousInput;
+let displayCurrent = () => currentInputDisplay.textContent = currentInput;
+let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + eligibleOperators[operator];
 
 
 /* Mouse support */
