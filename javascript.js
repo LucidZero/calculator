@@ -1,6 +1,7 @@
 let currentInput = "";
 let previousInput = "";
-let operator = "+";
+let operator = 0;
+let eligibleOperators = ["+", "-", "*", "/"];
 
 let keypad = document.querySelector("#pad");
 let buttons = document.querySelector(".buttons");
@@ -15,7 +16,7 @@ let previousInputDisplay = document.querySelector("#previousInput");
 
 
 let displayCurrent = () => currentInputDisplay.textContent = currentInput;
-let displayPrevious = () => currentInputDisplay.textContent = previousInput;
+let displayPrevious = () => previousInputDisplay.textContent = previousInput;
 
 
 
@@ -31,10 +32,6 @@ on = we just sum current and previous with last operator
 
 */ 
 
-/*calculator()  This will run on = or enter as well as operators*/
-function calculator(){
-
-}
 
 /*object.addEventListener("keydown", myScript); */
 
@@ -47,12 +44,18 @@ add them into currentInput array */
 
 
 keypad.addEventListener('click', (event) => {
-    if (event.target.matches("div")){
-console.log("hi")
-
+    if (event.target.matches("#buttonsClear")){
+        currentInput = "";
+        previousInput = "";
+        operator = "+";
+        displayCurrent();
+        displayPrevious();
     } 
 
   })
+
+
+
 
 window.addEventListener("keypress", event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
@@ -68,34 +71,68 @@ window.addEventListener("keypress", event => {
 
 
 window.addEventListener("keydown", event => {
-    console.log(event.key)
-if (event.key === "Backspace"){
-    currentInput = currentInput.slice(0, -1);
-    displayCurrent();
-}
-if (event.key === "Enter"){
-    /*make a switch statement where based on operator you*/
-    displayCurrent();
-    displayPrevious();
+        console.log(event.key)
+    if (event.key === "Backspace"){
+        currentInput = currentInput.slice(0, -1);
+        displayCurrent();
 }
 if (event.key === "."){
-if (currentInput.includes(".")===false){
-
-    currentInput += (event.key);
-
-    displayCurrent();
+    if (currentInput.includes(".")===false){
+        currentInput += (event.key);
+        displayCurrent();
 }
 }
+
+if (eligibleOperators.includes(event.key)===true){
+    operator = eligibleOperators.indexOf(event.key);
+    switch(operator) {
+        case 0:
+            addition();
+            calculate();
+        break;
+        case 1:
+            subtraction();
+            calculate();
+        break;
+        case 2:
+            multiplication();
+            calculate();
+        break;
+        case 3:
+            divison();
+            calculate();
+        break;
+          
+      }
+}
+
+if (event.key === "Enter"){
+    
+    previousInput = Number(previousInput) + Number(currentInput); /*here we calculate */
+    calculate();
+}
+
+
 });
 
 
 
 
 
-let addition = () => Number(currentInput) + Number(previousInput);
-let addsubtractionition = () => Number(currentInput) - Number(previousInput);
-let multiplication = () => Number(currentInput) * Number(previousInput);
-let divison = () => Number(currentInput) / Number(previousInput);
+let addition = () => previousInput = Number(currentInput) + Number(previousInput);
+let subtraction = () => previousInput = Number(currentInput) - Number(previousInput);
+let multiplication = () => previousInput =Number(currentInput) * Number(previousInput);
+let divison = () => previousInput = Number(currentInput) / Number(previousInput);
 
 
 
+function calculate() {
+previousInput = previousInput.toFixed(2).replace(/[.,]00$/, ""); 
+/*Shows two decimal places only if there are decimals */
+
+previousInput = String(previousInput);
+
+currentInput = "";
+
+displayCurrent();
+displayPrevious();}
