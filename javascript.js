@@ -36,12 +36,6 @@ keypad.addEventListener('click', (event) => {
     } 
 });
 keypad.addEventListener('click', (event) => {
-    if (event.target.matches("#buttonsEquals")){
-        previousOperator=operator
-        calculate();
-    } 
-});
-keypad.addEventListener('click', (event) => {
     if (event.target.matches("#dot")){
         if (currentInput.includes(".")===false){
             currentInput += (".");
@@ -49,6 +43,16 @@ keypad.addEventListener('click', (event) => {
     }
     } 
 });
+
+keypad.addEventListener('click', (event) => {
+    
+    if (event.target.matches("#buttonsEquals")){
+        
+        calculate(operator);
+    }
+
+});
+
 /* Mouse support for numbers and operators */
 window.onclick = event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
@@ -59,12 +63,17 @@ window.onclick = event => {
     }
 
     if (eligibleOperators.includes(String(event.target.textContent)) === true) {
+
         previousOperator = operator;
         operator = eligibleOperators.indexOf(event.target.textContent);
         
         calculate(previousOperator);
+        } else {
+            previousOperator = operator;
+            displayPrevious();
         }
-    } 
+}
+    
 
 
 /* Keyboard support */
@@ -110,8 +119,8 @@ if (eligibleOperators.includes(event.key)===true){
     }
 }
 if (event.key === "Enter" || event.key === "=") {  
-    previousOperator=operator
-    calculate();
+
+        calculate(operator);
 }
 });
 
@@ -140,8 +149,8 @@ function previousInputShown() {
     }
 }
 
-function calculate(){
-    switch(previousOperator) {
+function calculate(x){
+    switch(x) {
     case 0:
         addition();
         previousInputShown();
