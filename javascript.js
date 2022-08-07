@@ -54,11 +54,27 @@ if (event.key === "."){
         displayCurrent();
 }
 }
+
+
 if (eligibleOperators.includes(event.key)===true){
-   
-        operator = eligibleOperators.indexOf(event.key);
-        calculate(operator);
-    
+    if (event.key === "/"){
+        if (previousInput == 0 || currentInput == 0){
+            previousInput = "Cannot divide with a 0";
+            operator = eligibleOperators.indexOf(event.key);
+            displayPrevious();
+            displayCurrent();
+            previousInput = "";
+            currentInput = "";
+        }
+        else {
+            operator = eligibleOperators.indexOf(event.key);
+            calculate(operator);
+            }
+    } else {
+    operator = eligibleOperators.indexOf(event.key);
+    calculate(operator);
+    }
+
 }
 
 if (event.key === "Enter" || event.key === "=") {  
@@ -69,12 +85,18 @@ if (event.key === "Enter" || event.key === "=") {
 
 });
 
-/* if (event.key==="/" && previousInput == 0 || currentInput == 0){
+/*     
+if(currentInput== 0 || previousInput == 0){
         previousInput = "Cannot divide with a 0";
-        displayPrevious();
-        previousInput="";
         currentInput="";
-    } else{*/
+        displayPrevious();
+        displayCurrent();
+        previousInput="";
+    } else if(currentInput > 0 && previousInput > 0) {
+        operator = eligibleOperators.indexOf(event.key);
+        calculate(operator);
+    }
+} else */
 
 
 
@@ -93,8 +115,16 @@ previousInput = previousInput.replace(/-/g, "");
 
 previousInput = String(previousInput);
 currentInput = "";
+
+if (previousInput === "NaN"){
+    previousInput = "Something went wrong..";
+    displayPrevious();
+    previousInput = "";
+} else {
 displayCurrent();
-displayPrevious();}
+displayPrevious();
+}
+}
 
 
 
