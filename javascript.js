@@ -17,6 +17,7 @@ let displayPrevious = () => previousInputDisplay.textContent = previousInput;
 
 
 /* Mouse support */
+/* Mouse support for clear, backspace, equals and a dot */
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsClear")){
         currentInput = "";
@@ -45,23 +46,20 @@ keypad.addEventListener('click', (event) => {
     }
     } 
 });
-
+/* Mouse support for numbers and operators */
 window.onclick = event => {
-if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
-    return;
+    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
+        
     } else if (eligibleNumbers.includes(Number(event.target.innerText)) === true) {
         currentInput += (event.target.innerText);
         displayCurrent();
     }
-} 
 
-
-/*if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
-    return;
-    } else if (eligibleNumbers.includes(Number(text)) === true) {
-        currentInput += (text);
-        displayCurrent();
-    }*/
+    if (eligibleOperators.includes(String(event.target.innerText)) === true) {
+        operator = eligibleOperators.indexOf(event.target.innerText);
+        calculate(operator);
+        }
+    } 
 
 
 /* Keyboard support */
@@ -108,12 +106,11 @@ if (event.key === "Enter" || event.key === "=") {
 }
 });
 
+
 let addition = () => previousInput = Number(currentInput) + Number(previousInput);
 let subtraction = () => previousInput = Number(currentInput) - Number(previousInput);
 let multiplication = () => previousInput =Number(currentInput) * Number(previousInput);
 let divison = () => previousInput = Number(previousInput) / Number(currentInput);
-
-
 
 
 function previousInputShown() {
@@ -124,7 +121,7 @@ function previousInputShown() {
     previousInput = String(previousInput);
     currentInput = "";
 
-    if (previousInput === "NaN"){
+    if (previousInput === "NaN" || previousInput === "Infinity"){
         previousInput = "Something went wrong..";
         displayPrevious();
         previousInput = "";
@@ -133,9 +130,6 @@ function previousInputShown() {
         displayPrevious();
     }
 }
-
-
-
 
 function calculate(){
     switch(operator) {
