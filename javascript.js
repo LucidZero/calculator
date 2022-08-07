@@ -50,13 +50,13 @@ keypad.addEventListener('click', (event) => {
 window.onclick = event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
         
-    } else if (eligibleNumbers.includes(Number(event.target.innerText)) === true) {
-        currentInput += (event.target.innerText);
+    } else if (eligibleNumbers.includes(Number(event.target.textContent)) === true) {
+        currentInput += (event.target.textContent);
         displayCurrent();
     }
 
-    if (eligibleOperators.includes(String(event.target.innerText)) === true) {
-        operator = eligibleOperators.indexOf(event.target.innerText);
+    if (eligibleOperators.includes(String(event.target.textContent)) === true) {
+        operator = eligibleOperators.indexOf(event.target.textContent);
         calculate(operator);
         }
     } 
