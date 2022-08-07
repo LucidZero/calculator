@@ -1,6 +1,6 @@
-let currentInput;
-let previousInput;
-let operator;
+let currentInput = "";
+let previousInput = "";
+let operator = "+";
 
 let keypad = document.querySelector("#pad");
 let buttons = document.querySelector(".buttons");
@@ -15,6 +15,8 @@ let previousInputDisplay = document.querySelector("#previousInput");
 
 
 let displayCurrent = () => currentInputDisplay.textContent = currentInput;
+let displayPrevious = () => currentInputDisplay.textContent = previousInput;
+
 
 
 /* for numbers on keypress or click we write that number
@@ -37,7 +39,6 @@ function calculator(){
 /*object.addEventListener("keydown", myScript); */
 
 /* eligible keys that can be pressed */
-let eligibleKeys = ["=", "+", "-", "*", "/", "Backspace", "."]
 
 /*when we press one of the above buttons
 add them into currentInput array */
@@ -57,7 +58,7 @@ window.addEventListener("keypress", event => {
 
     for (step = 0; step < 10; step++) {
 if (event.key == step) {
-    currentInput.push(event.key);
+    currentInput += (event.key);
     displayCurrent();
     }}
 });
@@ -66,18 +67,18 @@ if (event.key == step) {
 window.addEventListener("keydown", event => {
     console.log(event.key)
 if (event.key === "Backspace"){
-    currentInput.pop();
-    displayCurrent()
+    currentInput = currentInput.slice(0, -1);
+    displayCurrent();
 }
 if (event.key === "Enter"){
-    
-    displayCurrent()
-    previousInputDisplay.textContent = previousInput.map(Number);
+    /*make a switch statement where based on operator you*/
+    displayCurrent();
+    displayPrevious();
 }
 if (event.key === "."){
 if (currentInput.includes(".")===false){
-    currentInput.push(".");
-    displayCurrent()
+    currentInput += ".";
+    displayCurrent();
 }
 }
 });
@@ -86,10 +87,10 @@ if (currentInput.includes(".")===false){
 
 
 
-let addition = () => (currentInput) + (previousInput);
-let addsubtractionition = () => (currentInput) - (previousInput);
-let multiplication = () => (currentInput) * (previousInput);
-let divison = () => (currentInput) / (previousInput);
+let addition = () => Number(currentInput) + Number(previousInput);
+let addsubtractionition = () => Number(currentInput) - Number(previousInput);
+let multiplication = () => Number(currentInput) * Number(previousInput);
+let divison = () => Number(currentInput) / Number(previousInput);
 
 
 

@@ -71,13 +71,19 @@ input::-webkit-inner-spin-button {
     height: 120px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.178);
+    font-size: 40px;
+    text-align: end;
+    color: rgb(241, 241, 241);
 
 }
 #previousInput{
-height: 50px;
-width: 400px;
+    height: 50px;
+    width: 400px;
+
 }
 #currentInput{
-height: 70px;
-width: 400px;
+    height: 70px;
+    width: 400px;
+
+
 }
