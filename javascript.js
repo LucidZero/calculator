@@ -39,8 +39,15 @@ keypad.addEventListener('click', (event) => {
 });
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsEquals")){
-        calculate(previousOperator);
-        previousOperator=operator;
+
+        if (currentInput===empty){
+            console.log("test");
+            previousOperator = operator;
+            displayPrevious();
+        }else{
+            calculate(previousOperator);
+            previousOperator=operator;
+    }
     } 
 });
 keypad.addEventListener('click', (event) => {
@@ -102,7 +109,7 @@ if (event.key === "."){
 }
 if (eligibleOperators.includes(event.key)===true){
     if (currentInput===empty){
-        console.log("test")
+        console.log("test");
         operator = eligibleOperators.indexOf(event.key);
         previousOperator = operator;
         displayPrevious();
@@ -130,11 +137,9 @@ if (eligibleOperators.includes(event.key)===true){
 }
 
 
-
-
-
 if (event.key === "Enter" || event.key === "=") {
     if (currentInput===empty){
+        console.log("test")
         previousOperator = operator;
         displayPrevious();
         
