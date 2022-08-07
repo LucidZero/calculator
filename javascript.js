@@ -75,10 +75,11 @@ window.onclick = event => {
     }
     } 
 
-/* if (currentInput===empty){
-    operator = eligibleOperators.indexOf(event.target.textContent);
-    previousOperator=operator;
-} else { */
+
+
+
+
+
 /* Keyboard support */
 window.addEventListener("keypress", event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
@@ -100,6 +101,13 @@ if (event.key === "."){
 }
 }
 if (eligibleOperators.includes(event.key)===true){
+    if (currentInput===empty){
+        console.log("test")
+        operator = eligibleOperators.indexOf(event.key);
+        previousOperator = operator;
+        displayPrevious();
+        
+    } else {
     if (event.key === "/"){
         if (previousInput == 0 || currentInput == 0){
             previousInput = "Cannot divide with a 0";
@@ -115,12 +123,27 @@ if (eligibleOperators.includes(event.key)===true){
             }
     } else {
     operator = eligibleOperators.indexOf(event.key);
-    calculate(operator);
-    }
-}
-if (event.key === "Enter" || event.key === "=") {
     calculate(previousOperator);
     previousOperator=operator;
+    }
+}
+}
+
+
+
+
+
+if (event.key === "Enter" || event.key === "=") {
+    if (currentInput===empty){
+        previousOperator = operator;
+        displayPrevious();
+        
+    } else { 
+        
+    
+    calculate(previousOperator);
+    previousOperator=operator;
+}
 }
 });
 
