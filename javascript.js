@@ -1,24 +1,22 @@
 let currentInput = "";
 let previousInput = "";
 let operator = 0;
+
 let eligibleOperators = ["+", "-", "*", "/"];
+let eligibleNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 let keypad = document.querySelector("#pad");
 let buttons = document.querySelector(".buttons");
 let operators = document.querySelector(".operators");
 
-
-
-
 let currentInputDisplay = document.querySelector("#currentInput");
 let previousInputDisplay = document.querySelector("#previousInput");
-
 
 let displayCurrent = () => currentInputDisplay.textContent = currentInput+" "+eligibleOperators[operator];
 let displayPrevious = () => previousInputDisplay.textContent = previousInput;
 
 
-
+/* Mouse support */
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsClear")){
         currentInput = "";
@@ -27,21 +25,53 @@ keypad.addEventListener('click', (event) => {
         displayCurrent();
         displayPrevious();
     } 
+});
+keypad.addEventListener('click', (event) => {
+    if (event.target.matches("#backspaceButton")){
+        currentInput = currentInput.slice(0, -1);
+        displayCurrent();
+    } 
+});
+keypad.addEventListener('click', (event) => {
+    if (event.target.matches("#buttonsEquals")){
+        calculate();
+    } 
+});
+keypad.addEventListener('click', (event) => {
+    if (event.target.matches("#dot")){
+        if (currentInput.includes(".")===false){
+            currentInput += (".");
+            displayCurrent();
+    }
+    } 
+});
 
-  })
+window.onclick = event => {
+if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
+    return;
+    } else if (eligibleNumbers.includes(Number(event.target.innerText)) === true) {
+        currentInput += (event.target.innerText);
+        displayCurrent();
+    }
+} 
 
+
+/*if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
+    return;
+    } else if (eligibleNumbers.includes(Number(text)) === true) {
+        currentInput += (text);
+        displayCurrent();
+    }*/
+
+
+/* Keyboard support */
 window.addEventListener("keypress", event => {
-
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
     return;
-    } else{
-    for (step = 0; step < 10; step++) {
-
-    if (event.key == step) {
+    } else if (eligibleNumbers.includes(Number(event.key)) === true) {
         currentInput += (event.key);
         displayCurrent();
-        }}}
-    });
+        }});
 window.addEventListener("keydown", event => {
         console.log(event.key)
     if (event.key === "Backspace"){
@@ -54,8 +84,6 @@ if (event.key === "."){
         displayCurrent();
 }
 }
-
-
 if (eligibleOperators.includes(event.key)===true){
     if (event.key === "/"){
         if (previousInput == 0 || currentInput == 0){
@@ -74,31 +102,11 @@ if (eligibleOperators.includes(event.key)===true){
     operator = eligibleOperators.indexOf(event.key);
     calculate(operator);
     }
-
 }
-
 if (event.key === "Enter" || event.key === "=") {  
     calculate();
-
 }
-
-
 });
-
-/*     
-if(currentInput== 0 || previousInput == 0){
-        previousInput = "Cannot divide with a 0";
-        currentInput="";
-        displayPrevious();
-        displayCurrent();
-        previousInput="";
-    } else if(currentInput > 0 && previousInput > 0) {
-        operator = eligibleOperators.indexOf(event.key);
-        calculate(operator);
-    }
-} else */
-
-
 
 let addition = () => previousInput = Number(currentInput) + Number(previousInput);
 let subtraction = () => previousInput = Number(currentInput) - Number(previousInput);
@@ -109,21 +117,21 @@ let divison = () => previousInput = Number(previousInput) / Number(currentInput)
 
 
 function previousInputShown() {
-previousInput = previousInput.toFixed(2).replace(/[.,]00$/, ""); 
-previousInput = previousInput.replace(/-/g, "");
-/*Shows two decimal places only if there are decimals */
+    previousInput = previousInput.toFixed(2).replace(/[.,]00$/, ""); 
+    previousInput = previousInput.replace(/-/g, "");
+    /*Shows two decimal places only if there are decimals */
 
-previousInput = String(previousInput);
-currentInput = "";
+    previousInput = String(previousInput);
+    currentInput = "";
 
-if (previousInput === "NaN"){
-    previousInput = "Something went wrong..";
-    displayPrevious();
-    previousInput = "";
-} else {
-displayCurrent();
-displayPrevious();
-}
+    if (previousInput === "NaN"){
+        previousInput = "Something went wrong..";
+        displayPrevious();
+        previousInput = "";
+    } else {
+        displayCurrent();
+        displayPrevious();
+    }
 }
 
 
