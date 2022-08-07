@@ -13,8 +13,8 @@ let operators = document.querySelector(".operators");
 let currentInputDisplay = document.querySelector("#currentInput");
 let previousInputDisplay = document.querySelector("#previousInput");
 
-let displayCurrent = () => currentInputDisplay.textContent = currentInput+" "+eligibleOperators[operator];
-let displayPrevious = () => previousInputDisplay.textContent = previousInput;
+let displayCurrent = () => currentInputDisplay.textContent = currentInput;
+let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + eligibleOperators[operator];
 
 
 /* Mouse support */
@@ -24,7 +24,6 @@ keypad.addEventListener('click', (event) => {
         currentInput = "";
         previousInput = "";
         operator = 0;
-        previousOperator = 0;
         displayCurrent();
         previousInputDisplay.textContent = "";
     } 
@@ -36,6 +35,12 @@ keypad.addEventListener('click', (event) => {
     } 
 });
 keypad.addEventListener('click', (event) => {
+    if (event.target.matches("#buttonsEquals")){
+        calculate(previousOperator);
+        previousOperator=operator;
+    } 
+});
+keypad.addEventListener('click', (event) => {
     if (event.target.matches("#dot")){
         if (currentInput.includes(".")===false){
             currentInput += (".");
@@ -43,16 +48,6 @@ keypad.addEventListener('click', (event) => {
     }
     } 
 });
-
-keypad.addEventListener('click', (event) => {
-    
-    if (event.target.matches("#buttonsEquals")){
-        
-        calculate(operator);
-    }
-
-});
-
 /* Mouse support for numbers and operators */
 window.onclick = event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
@@ -63,17 +58,11 @@ window.onclick = event => {
     }
 
     if (eligibleOperators.includes(String(event.target.textContent)) === true) {
-
-        previousOperator = operator;
         operator = eligibleOperators.indexOf(event.target.textContent);
-        
         calculate(previousOperator);
-        } else {
-            previousOperator = operator;
-            displayPrevious();
+        previousOperator=operator;
         }
-}
-    
+    } 
 
 
 /* Keyboard support */
@@ -105,22 +94,19 @@ if (eligibleOperators.includes(event.key)===true){
             displayCurrent();
             previousInput = "";
             currentInput = "";
-            
         }
         else {
             operator = eligibleOperators.indexOf(event.key);
             calculate(operator);
             }
     } else {
-    previousOperator = operator;
     operator = eligibleOperators.indexOf(event.key);
-    
     calculate(operator);
     }
 }
-if (event.key === "Enter" || event.key === "=") {  
-
-        calculate(operator);
+if (event.key === "Enter" || event.key === "=") {
+    calculate(previousOperator);
+    previousOperator=operator;
 }
 });
 
