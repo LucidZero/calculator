@@ -44,6 +44,12 @@ input::-webkit-inner-spin-button {
 
 }
 
+#buttonsClear:active, #buttonsEquals:active, .operators:active, .buttons:active, #dot:active, #backspaceButton:active{
+
+    background-color: rgba(0, 0, 0, 0.114);
+
+}
+
 #buttonsClear{
     height: 100px;
     width: 200px;
