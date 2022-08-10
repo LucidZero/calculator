@@ -1,7 +1,6 @@
 let currentInput = "";
 let previousInput = "";
-let operator = 0;
-let previousOperator = 0;
+let previousOperator = "+";
 let empty = "";
 
 let eligibleOperators = ["+", "-", "*"];
@@ -15,7 +14,7 @@ let currentInputDisplay = document.querySelector("#currentInput");
 let previousInputDisplay = document.querySelector("#previousInput");
 
 let displayCurrent = () => currentInputDisplay.textContent = currentInput;
-let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + eligibleOperators[operator];
+let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + previousOperator;
 
 
 
@@ -27,7 +26,6 @@ window.addEventListener("keypress", event => {
         currentInput += (event.key);
         displayOutputWindow();
     }
-
     if (currentInput === empty && eligibleOperators.includes(event.key) === true){
         previousOperator = event.key ;
         displayOutputWindow();
@@ -51,10 +49,11 @@ window.addEventListener("keypress", event => {
             if (currentInput === empty || currentInput == 0 || previousInput === empty || previousInput == 0){
                 previousInput = "Cannot divide with a 0";
                 displayOutputWindow();
-            } else (
+            } else {
                 calculate(previousOperator);
-            )
-
+                previousOperator = event.key;
+                clearFields();
+            }
         break;
         case 3:
 
@@ -74,19 +73,20 @@ let divison = () => previousInput = Number(previousInput) / Number(currentInput)
 
 function calculate(x){
     switch(x) {
-    case 0:
+    case "+":
+        console.log(1)
         addition();
         previousInputShown();
     break;
-    case 1:
+    case "-":
         subtraction();
         previousInputShown();
     break;
-    case 2:
+    case "*":
         multiplication();
         previousInputShown();
     break;
-    case 3:
+    case "/":
         divison();
         previousInputShown();
     break;
@@ -98,5 +98,8 @@ function previousInputShown() {
     console.log(typeof(previouInput));
     previousInput = String(previousInput); /* turns it from numbers to string */
     currentInput = "";
+    displayOutputWindow();
 }
-let displayOutputWindow = () => displayCurrent; displayPrevious;
+let displayOutputWindow = () => displayCurrent(); displayPrevious();
+
+let clearFields = () => currentInput = ""; previousInput = ""; previousOperator = "+";
