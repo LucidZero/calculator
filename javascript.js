@@ -1,6 +1,7 @@
 let currentInput = "";
 let previousInput = "";
 let previousOperator = "+";
+let operator = "+";
 let empty = "";
 
 let eligibleOperators = ["+", "-", "*"];
@@ -18,68 +19,86 @@ let displayPrevious = () => previousInputDisplay.textContent = previousInput + "
 
 
 
+keypad.addEventListener('click', (event) => {
+    if (event.target.matches("#buttonsClear")){
+        currentInput = "";
+        previousInput = "";
+        operator = "+";
+        previousOperator = "+";
+        displayCurrent();
+        previousInputDisplay.textContent = "";
+    } 
+});
+
+
+
 /* Keyboard support */
-window.addEventListener("keypress", event => {
+window.addEventListener("keydown", event => {
     if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
-        return;
+
     } else if (eligibleNumbers.includes(Number(event.key)) === true) {
         currentInput += (event.key);
         displayOutputWindow();
     }
     if (currentInput === empty && eligibleOperators.includes(event.key) === true){
-        previousOperator = event.key ;
+        previousOperator = event.key;
         displayOutputWindow();
     } else if (eligibleOperators.includes(event.key) === true) { 
         /*based on previous operator calculate and set event.key as previous operator*/
         calculate(previousOperator);
-        previousOperator = event.key;
+        previousOperator=event.key;
+        displayOutputWindow();
     }
 
-    if (event.key){}
-
     switch(event.key) {
+        case "Backspace":
+            console.log(12)
+            currentInput = currentInput.slice(0, -1);
+            displayOutputWindow();
+        break;
         case "Enter" || "=":
             calculate(previousOperator);
         break;
         case ".":
-            currentInput += (event.key);
-            displayOutputWindow();
+            if (event.key === "."){
+                if (currentInput.includes(".")===false){
+                    currentInput += (event.key);
+                    displayOutputWindow();
+            }
+        }
         break;
         case "/":
-            if (currentInput === empty || currentInput == 0 || previousInput === empty || previousInput == 0){
+            if(currentInput === empty){
+                previousOperator = event.key;
+                displayOutputWindow();
+            } else if (previousInput === empty || previousInput == 0){
                 previousInput = "Cannot divide with a 0";
                 displayOutputWindow();
+                clearFields();
             } else {
                 calculate(previousOperator);
                 previousOperator = event.key;
-                clearFields();
             }
         break;
-        case 3:
-
-        break;
       }
-    
-
 }
-)
-        
-        
-        
-let addition = () => previousInput = Number(currentInput) + Number(previousInput);
-let subtraction = () => previousInput = Number(currentInput) - Number(previousInput);
-let multiplication = () => previousInput =Number(currentInput) * Number(previousInput);
+)      
+let addition = () => previousInput = Number(previousInput) + Number(currentInput);
+let subtraction = () => previousInput = Number(previousInput) - Number(currentInput);
+let multiplication = () => previousInput = Number(previousInput) * Number(currentInput);
 let divison = () => previousInput = Number(previousInput) / Number(currentInput);
 
 function calculate(x){
     switch(x) {
     case "+":
-        console.log(1)
         addition();
         previousInputShown();
     break;
     case "-":
         subtraction();
+        if (previousInput < 0){
+
+        }
         previousInputShown();
     break;
     case "*":
@@ -100,6 +119,9 @@ function previousInputShown() {
     currentInput = "";
     displayOutputWindow();
 }
-let displayOutputWindow = () => displayCurrent(); displayPrevious();
+let displayOutputWindow = () => {displayCurrent(); 
+displayPrevious();}
 
-let clearFields = () => currentInput = ""; previousInput = ""; previousOperator = "+";
+let clearFields = () => {currentInput = ""; 
+previousInput = ""; 
+previousOperator = "+";}
