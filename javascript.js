@@ -1,7 +1,7 @@
 let currentInput = "";
 let previousInput = "";
 let previousOperator = "+";
-let operator = "+";
+let savePreviousInput = "";
 let empty = "";
 
 let eligibleOperators = ["+", "-", "*"];
@@ -21,12 +21,12 @@ let displayPrevious = () => previousInputDisplay.textContent = previousInput + "
 
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsClear")){
-        currentInput = "";
-        previousInput = "";
-        operator = "+";
-        previousOperator = "+";
-        displayCurrent();
-        previousInputDisplay.textContent = "";
+            currentInput = "";
+            previousInput = "";
+            operator = "+";
+            previousOperator = "+";
+            displayCurrent();
+            previousInputDisplay.textContent = "";
     } 
 });
 
@@ -56,8 +56,17 @@ window.addEventListener("keydown", event => {
             currentInput = currentInput.slice(0, -1);
             displayOutputWindow();
         break;
-        case "Enter" || "=":
-            calculate(previousOperator);
+        case "Enter":
+            if (previousOperator === "/"){
+                testDivision();
+            } else {
+            calculate(previousOperator);}
+        break;
+        case "=":
+            if (previousOperator === "/"){
+                testDivision();
+            } else {
+            calculate(previousOperator);}
         break;
         case ".":
             if (event.key === "."){
@@ -68,17 +77,7 @@ window.addEventListener("keydown", event => {
         }
         break;
         case "/":
-            if(currentInput === empty){
-                previousOperator = event.key;
-                displayOutputWindow();
-            } else if (previousInput === empty || previousInput == 0){
-                previousInput = "Cannot divide with a 0";
-                displayOutputWindow();
-                clearFields();
-            } else {
-                calculate(previousOperator);
-                previousOperator = event.key;
-            }
+            testDivision();
         break;
       }
 }
@@ -86,7 +85,7 @@ window.addEventListener("keydown", event => {
 let addition = () => previousInput = Number(previousInput) + Number(currentInput);
 let subtraction = () => previousInput = Number(previousInput) - Number(currentInput);
 let multiplication = () => previousInput = Number(previousInput) * Number(currentInput);
-let divison = () => previousInput = Number(previousInput) / Number(currentInput);
+let division = () => previousInput = Number(previousInput) / Number(currentInput);
 
 function calculate(x){
     switch(x) {
@@ -96,9 +95,6 @@ function calculate(x){
     break;
     case "-":
         subtraction();
-        if (previousInput < 0){
-
-        }
         previousInputShown();
     break;
     case "*":
@@ -106,7 +102,7 @@ function calculate(x){
         previousInputShown();
     break;
     case "/":
-        divison();
+        division();
         previousInputShown();
     break;
   }
@@ -125,3 +121,24 @@ displayPrevious();}
 let clearFields = () => {currentInput = ""; 
 previousInput = ""; 
 previousOperator = "+";}
+
+
+let testDivision = () =>  { if(currentInput === empty){
+    previousOperator = "/";
+    displayOutputWindow();
+} else if (currentInput === "0" && previousInput === empty){
+    calculate(previousOperator);
+    previousOperator = "/";
+    displayOutputWindow();
+} else if (currentInput === "0"){
+    savePreviousInput = previousInput;
+    previousInput = "Cannot divide with a 0";
+    currentInput = "";
+    displayOutputWindow();
+    previousInput = savePreviousInput;
+} else {
+    calculate(previousOperator);
+    previousOperator = "/";
+    displayOutputWindow();
+}
+}
