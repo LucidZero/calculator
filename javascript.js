@@ -80,7 +80,7 @@ let testDivision = () =>  { if(currentInput === empty){
     calculate(previousOperator);
     previousOperator = "/";
     displayOutputWindow();
-} else if (currentInput === "0" || currentInput === "0.0" || currentInput === "0." || currentInput === ".00" || currentInput === ".0"){
+} else if (currentInput === "0" || currentInput === "0.0" || currentInput === "0." || currentInput === ".00" || currentInput === ".0" || currentInput === "."){
     savePreviousInput = previousInput;
     previousInput = "Cannot divide with a 0";
     currentInput = "";
