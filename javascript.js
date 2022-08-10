@@ -23,59 +23,19 @@ keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsClear")){
             currentInput = "";
             previousInput = "";
-            operator = "+";
             previousOperator = "+";
             displayCurrent();
             previousInputDisplay.textContent = "";
     } 
 });
-
 window.onclick = event => {
-    clickEvent = event.target.textContent;
-    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
-
-    } else if (eligibleNumbers.includes(Number(clickEvent)) === true) {
-        currentInput += (clickEvent);
-        displayOutputWindow();
-    }
-    if (currentInput === empty && eligibleOperators.includes(clickEvent) === true){
-        previousOperator = clickEvent;
-        displayOutputWindow();
-    } else if (eligibleOperators.includes(clickEvent) === true) { 
-        calculate(previousOperator);
-        previousOperator=clickEvent;
-        displayOutputWindow();
-    }
-
-    testOperations(clickEvent);
+    numbersAndOperators(event.target.textContent);
 }
-
-
-
-
 /* Keyboard support */
 window.addEventListener("keydown", event => {
-    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
-
-    } else if (eligibleNumbers.includes(Number(event.key)) === true) {
-        currentInput += (event.key);
-        displayOutputWindow();
-    }
-    if (currentInput === empty && eligibleOperators.includes(event.key) === true){
-        previousOperator = event.key;
-        displayOutputWindow();
-    } else if (eligibleOperators.includes(event.key) === true) { 
-        calculate(previousOperator);
-        previousOperator=event.key;
-        displayOutputWindow();
-    }
-
-    testOperations(event.key);
+    numbersAndOperators(event.key);
 }
 )
-
-
-
 
 let addition = () => previousInput = Number(previousInput) + Number(currentInput);
 let subtraction = () => previousInput = Number(previousInput) - Number(currentInput);
@@ -112,10 +72,6 @@ function previousInputShown() {
 }
 let displayOutputWindow = () => {displayCurrent(); 
 displayPrevious();}
-
-let clearFields = () => {currentInput = ""; 
-previousInput = ""; 
-previousOperator = "+";}
 
 
 let testDivision = () =>  { if(currentInput === empty){
@@ -173,4 +129,23 @@ switch(keyEvent) {
         testDivision();
     break;
   }
+}
+
+let numbersAndOperators = (event) => {    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
+
+} else if (eligibleNumbers.includes(Number(event)) === true) {
+    currentInput += (event);
+    displayOutputWindow();
+}
+if (currentInput === empty && eligibleOperators.includes(event) === true){
+    previousOperator = event;
+    displayOutputWindow();
+} else if (eligibleOperators.includes(event) === true) { 
+    calculate(previousOperator);
+    previousOperator=event;
+    displayOutputWindow();
+}
+
+testOperations(event);
+
 }
