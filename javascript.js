@@ -17,7 +17,6 @@ let previousInputDisplay = document.querySelector("#previousInput");
 let displayCurrent = () => currentInputDisplay.textContent = currentInput;
 let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + previousOperator;
 
-
 /* Mouse support*/
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsClear")){
@@ -36,12 +35,12 @@ window.addEventListener("keydown", event => {
     numbersAndOperators(event.key);
 }
 )
-
+/* this here does actual math of the calculator */
 let addition = () => previousInput = Number(previousInput) + Number(currentInput);
 let subtraction = () => previousInput = Number(previousInput) - Number(currentInput);
 let multiplication = () => previousInput = Number(previousInput) * Number(currentInput);
 let division = () => previousInput = Number(previousInput) / Number(currentInput);
-
+/* This here is used to calculate based on operator */
 function calculate(x){
     switch(x) {
     case "+":
@@ -70,10 +69,10 @@ function previousInputShown() {
     currentInput = "";
     displayOutputWindow();
 }
+/* keeps whats displayed up to date */
 let displayOutputWindow = () => {displayCurrent(); 
 displayPrevious();}
-
-
+/*this here is responsible for testing if its divisible due to zeros */
 let testDivision = () =>  { if(currentInput === empty){
     previousOperator = "/";
     displayOutputWindow();
@@ -93,8 +92,8 @@ let testDivision = () =>  { if(currentInput === empty){
     displayOutputWindow();
 }
 }
-
-
+/* This here is used to for calculating based on enter, =, undoing numbers, placing a dot as well as
+making sure to divide properly*/
 function testOperations (keyEvent){
 switch(keyEvent) {
     case "Backspace":
@@ -130,7 +129,7 @@ switch(keyEvent) {
     break;
   }
 }
-
+/* this here makes sure numbers and operators are typed in and displayed correctly */
 let numbersAndOperators = (event) => {    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
 
 } else if (eligibleNumbers.includes(Number(event)) === true) {
@@ -145,7 +144,5 @@ if (currentInput === empty && eligibleOperators.includes(event) === true){
     previousOperator=event;
     displayOutputWindow();
 }
-
 testOperations(event);
-
 }
