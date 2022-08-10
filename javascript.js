@@ -42,6 +42,9 @@ let multiplication = () => previousInput = Number(previousInput) * Number(curren
 let division = () => previousInput = Number(previousInput) / Number(currentInput);
 /* This here is used to calculate based on operator */
 function calculate(x){
+    if (currentInput === "."){
+        currentInput = "0";
+    } 
     switch(x) {
     case "+":
         addition();
@@ -80,7 +83,7 @@ let testDivision = () =>  { if(currentInput === empty){
     calculate(previousOperator);
     previousOperator = "/";
     displayOutputWindow();
-} else if (currentInput === "0" || currentInput === "0.0" || currentInput === "0." || currentInput === ".00" || currentInput === ".0" || currentInput === "."){
+} else if (currentInput === "0" || currentInput === "0.0" || currentInput === "0." || currentInput === ".00" || currentInput === ".0"){
     savePreviousInput = previousInput;
     previousInput = "Cannot divide with a 0";
     currentInput = "";
