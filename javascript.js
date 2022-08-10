@@ -18,7 +18,7 @@ let displayCurrent = () => currentInputDisplay.textContent = currentInput;
 let displayPrevious = () => previousInputDisplay.textContent = previousInput + " " + previousOperator;
 
 
-
+/* Mouse support*/
 keypad.addEventListener('click', (event) => {
     if (event.target.matches("#buttonsClear")){
             currentInput = "";
@@ -29,6 +29,27 @@ keypad.addEventListener('click', (event) => {
             previousInputDisplay.textContent = "";
     } 
 });
+
+window.onclick = event => {
+    clickEvent = event.target.textContent;
+    if (currentInput.includes(".")===true && (currentInput.length)-3 === currentInput.indexOf(".")){
+
+    } else if (eligibleNumbers.includes(Number(clickEvent)) === true) {
+        currentInput += (clickEvent);
+        displayOutputWindow();
+    }
+    if (currentInput === empty && eligibleOperators.includes(clickEvent) === true){
+        previousOperator = clickEvent;
+        displayOutputWindow();
+    } else if (eligibleOperators.includes(clickEvent) === true) { 
+        calculate(previousOperator);
+        previousOperator=clickEvent;
+        displayOutputWindow();
+    }
+
+    testOperations(clickEvent);
+}
+
 
 
 
@@ -44,44 +65,18 @@ window.addEventListener("keydown", event => {
         previousOperator = event.key;
         displayOutputWindow();
     } else if (eligibleOperators.includes(event.key) === true) { 
-        /*based on previous operator calculate and set event.key as previous operator*/
         calculate(previousOperator);
         previousOperator=event.key;
         displayOutputWindow();
     }
 
-    switch(event.key) {
-        case "Backspace":
-            console.log(12)
-            currentInput = currentInput.slice(0, -1);
-            displayOutputWindow();
-        break;
-        case "Enter":
-            if (previousOperator === "/"){
-                testDivision();
-            } else {
-            calculate(previousOperator);}
-        break;
-        case "=":
-            if (previousOperator === "/"){
-                testDivision();
-            } else {
-            calculate(previousOperator);}
-        break;
-        case ".":
-            if (event.key === "."){
-                if (currentInput.includes(".")===false){
-                    currentInput += (event.key);
-                    displayOutputWindow();
-            }
-        }
-        break;
-        case "/":
-            testDivision();
-        break;
-      }
+    testOperations(event.key);
 }
-)      
+)
+
+
+
+
 let addition = () => previousInput = Number(previousInput) + Number(currentInput);
 let subtraction = () => previousInput = Number(previousInput) - Number(currentInput);
 let multiplication = () => previousInput = Number(previousInput) * Number(currentInput);
@@ -130,7 +125,7 @@ let testDivision = () =>  { if(currentInput === empty){
     calculate(previousOperator);
     previousOperator = "/";
     displayOutputWindow();
-} else if (currentInput === "0"){
+} else if (currentInput === "0" || currentInput === "0.0" || currentInput === "0." || currentInput === ".00" || currentInput === ".0"){
     savePreviousInput = previousInput;
     previousInput = "Cannot divide with a 0";
     currentInput = "";
@@ -141,4 +136,41 @@ let testDivision = () =>  { if(currentInput === empty){
     previousOperator = "/";
     displayOutputWindow();
 }
+}
+
+
+function testOperations (keyEvent){
+switch(keyEvent) {
+    case "Backspace":
+        currentInput = currentInput.slice(0, -1);
+        displayOutputWindow();
+    break;
+    case "DEL":
+        currentInput = currentInput.slice(0, -1);
+        displayOutputWindow();
+    break;
+    case "Enter":
+        if (previousOperator === "/"){
+            testDivision();
+        } else {
+        calculate(previousOperator);}
+    break;
+    case "=":
+        if (previousOperator === "/"){
+            testDivision();
+        } else {
+        calculate(previousOperator);}
+    break;
+    case ".":
+        if (keyEvent === "."){
+            if (currentInput.includes(".")===false){
+                currentInput += (keyEvent);
+                displayOutputWindow();
+        }
+    }
+    break;
+    case "/":
+        testDivision();
+    break;
+  }
 }
