@@ -1,33 +1,55 @@
-# calculator
-Making calculator as part of odin project - https://www.theodinproject.com/lessons/foundations-calculator
+# Calculator Project
 
+This is a simple calculator project that allows you to perform basic arithmetic operations such as addition, subtraction, multiplication, and division. It is built using HTML, CSS, and JavaScript.
 
-Here are some use cases (abilities your project needs to have):
+## Features
 
-Your calculator is going to contain functions for all of the basic math operators you typically find on simple calculators, so start by creating functions for the following items and testing them in your browser’s console.
-add
-subtract
-multiply
-divide
-Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
-Do not worry about wiring up the JS just yet.
-There should also be a display for the calculator. Go ahead and fill it with some dummy numbers so it looks correct.
-Add a “clear” button.
-Create the functions that populate the display when you click the number buttons. You should be storing the ‘display value’ in a variable somewhere for use in the next step.
-Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
-You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
-This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
-Gotchas: watch out for and fix these bugs if they show up in your code:
-Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student solution.
-Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), followed by an operator button (+), a second number button (7), and finally a second operator button (-). Your calculator should then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
-You should round answers with long decimals so that they don’t overflow the screen.
-Pressing = before entering all of the numbers or an operator could cause problems!
-Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
-Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
-#### Extra Credit
+- Addition: Perform addition of two numbers.
+- Subtraction: Perform subtraction of two numbers.
+- Multiplication: Perform multiplication of two numbers.
+- Division: Perform division of two numbers.
+- Clear: Clear the current input and reset the calculator.
+- Delete: Delete the last entered digit.
+- Decimal Point: Add a decimal point to the input number.
+- Keyboard Support: The calculator also supports keyboard input for convenience.
 
-Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-Make it look nice! This is a great project to practice your CSS skills. At least make the operations a different color from the keypad buttons.
-Add a “backspace” button, so the user can undo if they click the wrong number.
-Add keyboard support!
+## How to Use
+
+1. Open the calculator.html file in a web browser.
+2. The calculator interface will be displayed with a display window at the top and a keypad below.
+3. Use the mouse or keyboard to enter numbers and perform operations.
+4. The current input is displayed in the "currentInput" section, and the previous input and operator are displayed in the "previousInput" section.
+5. Press the respective buttons on the keypad to perform operations or use the keyboard keys.
+   - Numbers: Click on the number buttons (0-9) or type the corresponding number keys.
+   - Operators: Click on the operator buttons (+, -, *, /) or type the corresponding symbol keys.
+   - Clear: Click on the "AC" button or press the "Backspace" key.
+   - Delete: Click on the "DEL" button or press the "Delete" key.
+   - Decimal Point: Click on the "." button or press the "." key.
+   - Equals: Click on the "=" button or press the "Enter" key.
+6. The current and previous inputs will be updated accordingly, and the result will be displayed in the "previousInput" section.
+
+You can access the calculator project here: https://lucidzero.github.io/calculator/
+
+## Customization
+
+You can customize the calculator's appearance by modifying the CSS styles in the provided "style.css" file. Feel free to make changes to suit your preferences.
+
+## Limitations
+
+- This calculator supports basic arithmetic operations and does not handle advanced mathematical functions or complex expressions.
+- Division by zero will display an error message.
+- The calculator displays up to two decimal places for the result.
+
+## Compatibility
+
+The calculator project has been tested and works well on modern web browsers.
+
+- Google Chrome
+- Opera
+- Microsoft Edge
+
+Please note that older browsers may have limited support for certain features and may not display the calculator correctly.
+
+## Conclusion
+
+This calculator project provides a simple and user-friendly interface for performing basic arithmetic operations. It can be easily customized and integrated into other web projects as needed. Feel free to explore and enhance the functionality based on your requirements. If you have any questions or feedback, please don't hesitate to reach out. Enjoy calculating!
